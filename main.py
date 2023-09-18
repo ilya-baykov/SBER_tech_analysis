@@ -90,11 +90,16 @@ class TechnicalIndicators:
         RSI = RSIIndicator(close, window)
         return RSI.rsi()
 
+    @staticmethod
+    def bollinger_bands(close, window=21):
+        BB = BollingerBands(close, window)
+        return BB.bollinger_hband()
+
 
 class DrawingGraphs:
     @staticmethod
     def draw_graphs(graphs: list, labels: list):
-        colors = ["blue", "green", "red", "black"]
+        colors = ["blue", "green", "red", "black", "purple"]
         for i, (graph, label) in enumerate(zip(graphs, labels)):
             plt.plot(graph, label=label, color=colors[i])
 
@@ -114,4 +119,5 @@ if __name__ == '__main__':
     sma = TechnicalIndicators.sma_indicator(dataset["CLOSE"], 21)
     ema = TechnicalIndicators.ema_indicator(dataset["CLOSE"], 21)
     rsi_14 = TechnicalIndicators.rsi_indicator(dataset["CLOSE"], 14)
-    DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi], ["CLOSE", "SMA", "EMA", "RSI"])
+    bb_21 = TechnicalIndicators.bollinger_bands(dataset["CLOSE"], 21)
+    DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi_14, bb_21], ["CLOSE", "SMA", "EMA", "RSI", "BB"])
