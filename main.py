@@ -80,8 +80,9 @@ class TechnicalIndicators:
 class DrawingGraphs:
     @staticmethod
     def draw_graphs(graphs: list, labels: list):
-        for graph, label in zip(graphs, labels):
-            plt.plot(graph, label=label)
+        colors = ["blue", "green", "red"]
+        for i, (graph, label) in enumerate(zip(graphs, labels)):
+            plt.plot(graph, label=label, color=colors[i])
         plt.xlabel("Date")
         plt.ylabel('Close Price')
         plt.title('Stock Price')
