@@ -46,7 +46,13 @@ class UserInteraction:
             answer = input(
                 f"Последние данные были обновлены {last_date_update.readline().strip()}."
                 f" Хотите загрузить новые ? (1 / 0 )\t\t")
-            return "1" in answer
+            if "1" in answer:
+                last_date_update.seek(0)
+                last_date_update.truncate()
+                last_date_update.write(str(cls.__today))
+                return True
+            else:
+                return False
 
     @classmethod
     def __defines_period(cls):
