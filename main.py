@@ -1,9 +1,12 @@
 import requests
 import apimoex
 import pandas as pd
+import numpy as np
 import datetime
 import matplotlib.pyplot as plt
 from ta.trend import SMAIndicator, EMAIndicator
+from ta.volatility import BollingerBands
+from ta.momentum import RSIIndicator
 
 
 class Dataset:
@@ -82,13 +85,19 @@ class TechnicalIndicators:
         EMA = EMAIndicator(close, window)
         return EMA.ema_indicator()
 
+    @staticmethod
+    def rsi_indicator(close, window=14):
+        RSI = RSIIndicator(close, window)
+        return RSI.rsi()
+
 
 class DrawingGraphs:
     @staticmethod
     def draw_graphs(graphs: list, labels: list):
-        colors = ["blue", "green", "red"]
+        colors = ["blue", "green", "red", "black"]
         for i, (graph, label) in enumerate(zip(graphs, labels)):
             plt.plot(graph, label=label, color=colors[i])
+
         plt.xlabel("Date")
         plt.ylabel('Close Price')
         plt.title('Stock Price')
@@ -104,4 +113,5 @@ if __name__ == '__main__':
     dataset = pd.read_csv("Цены на акцию SBER", index_col="TRADEDATE")
     sma = TechnicalIndicators.sma_indicator(dataset["CLOSE"], 21)
     ema = TechnicalIndicators.ema_indicator(dataset["CLOSE"], 21)
-    DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema], ["CLOSE", "SMA", "EMA"])
+    rsi_14 = TechnicalIndicators.rsi_indicator(dataset["CLOSE"], 14)
+    DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi], ["CLOSE", "SMA", "EMA", "RSI"])
