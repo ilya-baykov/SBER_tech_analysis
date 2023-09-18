@@ -2,6 +2,8 @@ import requests
 import apimoex
 import pandas as pd
 import datetime
+import matplotlib.pyplot as plt
+from ta.trend import SMAIndicator, EMAIndicator
 
 
 class Dataset:
@@ -25,9 +27,6 @@ class Dataset:
             f"успешно !",
             '\n')
         print(self.__dataset.info)
-
-    def get_dataset(self):
-        return self.__dataset
 
 
 class UserInteraction:
@@ -61,21 +60,41 @@ class UserInteraction:
     @classmethod
     def __update_data(cls):
         if cls.__offer_update_data:
-            print("Да, он хочет обновить данные")
             SBER = Dataset(ticket="SBER", period=(cls.get_period()))
             SBER.dataset_formation()
             SBER.data_recording()
-        else:
-            print("Он не хочет обновлять данные")
 
 
 class TechnicalIndicators:
-    pass
+    @staticmethod
+    def sma_indicator(close, window=21):
+        SMA = SMAIndicator(close, window)
+        return SMA.sma_indicator()
+
+    @staticmethod
+    def ema_indicator(close, window=21):
+        EMA = EMAIndicator(close, window)
+        return EMA.ema_indicator()
 
 
 class DrawingGraphs:
-    pass
+    @staticmethod
+    def draw_graphs(graphs: list, labels: list):
+        for graph, label in zip(graphs, labels):
+            plt.plot(graph, label=label)
+        plt.xlabel("Date")
+        plt.ylabel('Close Price')
+        plt.title('Stock Price')
+        plt.xticks(dataset.index[::10], rotation=45)
+        plt.legend()
+        plt.tight_layout()
+        plt.xticks(rotation=45)
+        plt.show()
 
 
 if __name__ == '__main__':
     _USER = UserInteraction()
+    dataset = pd.read_csv("Цены на акцию SBER", index_col="TRADEDATE")
+    sma = TechnicalIndicators.sma_indicator(dataset["CLOSE"], 21)
+    ema = TechnicalIndicators.ema_indicator(dataset["CLOSE"], 21)
+    DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema], ["CLOSE", "SMA", "EMA"])
