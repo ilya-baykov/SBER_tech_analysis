@@ -20,7 +20,7 @@ class Dataset:
             dataset = pd.DataFrame(
                 apimoex.get_board_history(session=session, security=self.__ticket, start=self.__period[0],
                                           end=self.__period[1], columns=("TRADEDATE", "CLOSE", "VOLUME", "VALUE")))
-            # dataset = dataset.set_index("TRADEDATE")
+            dataset = dataset.set_index("TRADEDATE")
             return dataset
 
     def recording_stock_prices(self):
@@ -114,6 +114,17 @@ class TechnicalIndicators:
                 date_intersection.append(index)
         UserInteraction.recording_intersection_EMA_SMA_dates(date_intersection)
 
+    @staticmethod
+    def maxDrawnDown(dataset, start_day="2022-09-21"):
+        dataset['CLOSE_cummax'] = dataset['CLOSE'].cummax()
+        day, df = start_day, 0
+        for index, row in dataset.iterrows():
+            proportion = 100 - ((100 * row["CLOSE"]) / row["CLOSE_cummax"])
+            if proportion > df:
+                day, df = index, round(proportion, 2)
+        print(f"Максимальная 'просадка' была {day} и составила {df} %")
+        return day, df
+
 
 class DrawingGraphs:
     @staticmethod
@@ -141,3 +152,4 @@ if __name__ == '__main__':
     bb_21 = TechnicalIndicators.bollinger_bands(dataset["CLOSE"], 21)
     DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi_14, bb_21], ["CLOSE", "SMA", "EMA", "RSI", "BB"])
     TechnicalIndicators.intersection_SMA_EMA_search(sma, ema)
+    TechnicalIndicators.maxDrawnDown(dataset)
