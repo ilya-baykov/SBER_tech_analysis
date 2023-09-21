@@ -20,10 +20,10 @@ class Dataset:
             dataset = pd.DataFrame(
                 apimoex.get_board_history(session=session, security=self.__ticket, start=self.__period[0],
                                           end=self.__period[1], columns=("TRADEDATE", "CLOSE", "VOLUME", "VALUE")))
-            dataset = dataset.set_index("TRADEDATE")
+            # dataset = dataset.set_index("TRADEDATE")
             return dataset
 
-    def data_recording(self):
+    def recording_stock_prices(self):
         self.__dataset.to_csv(f"Цены на акцию {self.__ticket}")
         print(
             f"Запись цен акций {self.__ticket} за последний год ( с {self.__period[1]} по {self.__period[0]} ) выполнилась "
@@ -71,7 +71,13 @@ class UserInteraction:
         if cls.__offer_update_data:
             SBER = Dataset(ticket="SBER", period=(cls.get_period()))
             SBER.dataset_formation()
-            SBER.data_recording()
+            SBER.recording_stock_prices()
+
+    @staticmethod
+    def recording_intersection_EMA_SMA_dates(date_intersection):
+        with open("intersection_EMA_SMA_dates", "w") as file:
+            for line in date_intersection:
+                file.write(line + '\n')
 
 
 class TechnicalIndicators:
@@ -94,6 +100,19 @@ class TechnicalIndicators:
     def bollinger_bands(close, window=21):
         BB = BollingerBands(close, window)
         return BB.bollinger_hband()
+
+    @staticmethod
+    def intersection_SMA_EMA_search(_sma, _ema):
+        ema_greater = True
+        date_intersection = []
+        for index in sma.index:
+            if (_sma[index] >= _ema[index]) and ema_greater:
+                ema_greater = False
+                date_intersection.append(index)
+            elif (_sma[index] <= _ema[index] and ema_greater == False):
+                ema_greater = True
+                date_intersection.append(index)
+        UserInteraction.recording_intersection_EMA_SMA_dates(date_intersection)
 
 
 class DrawingGraphs:
@@ -121,3 +140,4 @@ if __name__ == '__main__':
     rsi_14 = TechnicalIndicators.rsi_indicator(dataset["CLOSE"], 14)
     bb_21 = TechnicalIndicators.bollinger_bands(dataset["CLOSE"], 21)
     DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi_14, bb_21], ["CLOSE", "SMA", "EMA", "RSI", "BB"])
+    TechnicalIndicators.intersection_SMA_EMA_search(sma, ema)
