@@ -46,9 +46,10 @@ class UserInteraction:
     def __handling_input(cls):
         with open("last_upd", "a+") as last_date_update:
             last_date_update.seek(0)
-            answer = input(
-                f"Последние данные были обновлены {last_date_update.readline().strip()}."
-                f" Хотите загрузить новые ? (1 / 0 )\t\t")
+            # answer = input(
+            #     f"Последние данные были обновлены {last_date_update.readline().strip()}."
+            #     f" Хотите загрузить новые ? (1 / 0 )\t\t")
+            answer = "1"
             if "1" in answer:
                 last_date_update.seek(0)
                 last_date_update.truncate()
@@ -105,7 +106,7 @@ class TechnicalIndicators:
     def intersection_SMA_EMA_search(_sma, _ema):
         ema_greater = True
         date_intersection = []
-        for index in sma.index:
+        for index in _sma.index:
             if (_sma[index] >= _ema[index]) and ema_greater:
                 ema_greater = False
                 date_intersection.append(index)
@@ -128,7 +129,7 @@ class TechnicalIndicators:
 
 class DrawingGraphs:
     @staticmethod
-    def draw_graphs(graphs: list, labels: list):
+    def draw_graphs(graphs: list, labels: list, dataset):
         colors = ["blue", "green", "red", "black", "purple"]
         for i, (graph, label) in enumerate(zip(graphs, labels)):
             plt.plot(graph, label=label, color=colors[i])
@@ -141,15 +142,3 @@ class DrawingGraphs:
         plt.tight_layout()
         plt.xticks(rotation=45)
         plt.show()
-
-
-if __name__ == '__main__':
-    _USER = UserInteraction()
-    dataset = pd.read_csv("Цены на акцию SBER", index_col="TRADEDATE")
-    sma = TechnicalIndicators.sma_indicator(dataset["CLOSE"], 21)
-    ema = TechnicalIndicators.ema_indicator(dataset["CLOSE"], 21)
-    rsi_14 = TechnicalIndicators.rsi_indicator(dataset["CLOSE"], 14)
-    bb_21 = TechnicalIndicators.bollinger_bands(dataset["CLOSE"], 21)
-    DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi_14, bb_21], ["CLOSE", "SMA", "EMA", "RSI", "BB"])
-    TechnicalIndicators.intersection_SMA_EMA_search(sma, ema)
-    TechnicalIndicators.maxDrawnDown(dataset)
