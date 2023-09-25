@@ -13,12 +13,6 @@ class Ui(QtWidgets.QDialog, Form):
         self.pushButton.clicked.connect(self.printButtonPressed)
 
     def printButtonPressed(self):
-        _USER = UserInteraction()
-        dataset = pd.read_csv("Цены на акцию SBER", index_col="TRADEDATE")
-        sma = TechnicalIndicators.sma_indicator(dataset["CLOSE"], 21)
-        ema = TechnicalIndicators.ema_indicator(dataset["CLOSE"], 21)
-        rsi_14 = TechnicalIndicators.rsi_indicator(dataset["CLOSE"], 14)
-        bb_21 = TechnicalIndicators.bollinger_bands(dataset["CLOSE"], 21)
         DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi_14, bb_21], ["CLOSE", "SMA", "EMA", "RSI", "BB"],
                                   dataset=dataset)
         TechnicalIndicators.intersection_SMA_EMA_search(sma, ema)
@@ -27,6 +21,13 @@ class Ui(QtWidgets.QDialog, Form):
 
 if __name__ == '__main__':
     import sys
+
+    _USER = UserInteraction()
+    dataset = pd.read_csv("Цены на акцию SBER", index_col="TRADEDATE")
+    sma = TechnicalIndicators.sma_indicator(dataset["CLOSE"], 21)
+    ema = TechnicalIndicators.ema_indicator(dataset["CLOSE"], 21)
+    rsi_14 = TechnicalIndicators.rsi_indicator(dataset["CLOSE"], 14)
+    bb_21 = TechnicalIndicators.bollinger_bands(dataset["CLOSE"], 21)
 
     app = QtWidgets.QApplication(sys.argv)
     w = Ui()
