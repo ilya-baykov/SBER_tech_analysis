@@ -16,7 +16,6 @@ class Ui(QtWidgets.QDialog, Form):
         self.checkBox_RSI.setChecked(True)
         self.checkBox_BB.setChecked(True)
 
-
     def printButtonPressed(self):
         check_box_checker = {key: value for key, value in
                              {"CLOSE": True, "SMA": self.checkBox_SMA.isChecked(), "EMA": self.checkBox_EMA.isChecked(),
@@ -37,7 +36,8 @@ class Ui(QtWidgets.QDialog, Form):
                                   [label_indicator for label_indicator in selected_indicators],
                                   dataset=dataset)
         TechnicalIndicators.intersection_SMA_EMA_search(sma, ema)
-        TechnicalIndicators.maxDrawnDown(dataset)
+        if self.checkBox_MDD.isChecked():
+            TechnicalIndicators.maxDrawnDown(dataset)
 
 
 if __name__ == '__main__':

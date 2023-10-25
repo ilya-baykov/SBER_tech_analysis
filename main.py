@@ -29,7 +29,7 @@ class Dataset:
             f"Запись цен акций {self.__ticket} за последний год ( с {self.__period[1]} по {self.__period[0]} ) выполнилась "
             f"успешно !",
             '\n')
-        print(self.__dataset.info)
+        # print(self.__dataset.info)
 
 
 class UserInteraction:
