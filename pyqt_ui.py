@@ -11,9 +11,30 @@ class Ui(QtWidgets.QDialog, Form):
         super(Ui, self).__init__()
         self.setupUi(self)
         self.pushButton.clicked.connect(self.printButtonPressed)
+        self.checkBox_SMA.setChecked(True)
+        self.checkBox_EMA.setChecked(True)
+        self.checkBox_RSI.setChecked(True)
+        self.checkBox_BB.setChecked(True)
+
 
     def printButtonPressed(self):
-        DrawingGraphs.draw_graphs([dataset["CLOSE"], sma, ema, rsi_14, bb_21], ["CLOSE", "SMA", "EMA", "RSI", "BB"],
+        check_box_checker = {key: value for key, value in
+                             {"CLOSE": True, "SMA": self.checkBox_SMA.isChecked(), "EMA": self.checkBox_EMA.isChecked(),
+                              "RSI": self.checkBox_RSI.isChecked(), "BB": self.checkBox_BB.isChecked()}.items() if
+                             value}
+        indicators_mapping = {
+            "CLOSE": dataset["CLOSE"],
+            "SMA": sma,
+            "EMA": ema,
+            "RSI": rsi_14,
+            "BB": bb_21
+        }
+        selected_indicators = {}
+        for key, value in check_box_checker.items():
+            selected_indicators[key] = indicators_mapping[key]
+
+        DrawingGraphs.draw_graphs([indicator for indicator in selected_indicators.values()],
+                                  [label_indicator for label_indicator in selected_indicators],
                                   dataset=dataset)
         TechnicalIndicators.intersection_SMA_EMA_search(sma, ema)
         TechnicalIndicators.maxDrawnDown(dataset)

@@ -1,188 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>819</width>
-    <height>533</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
-  </property>
-  <widget class="QDateEdit" name="dateEdit">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>200</y>
-     <width>141</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QDateEdit" name="dateEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>200</y>
-     <width>131</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="groupBox">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>80</y>
-     <width>371</width>
-     <height>331</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Индикаторы</string>
-   </property>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>371</width>
-      <height>311</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QCheckBox" name="checkBox_2">
-       <property name="text">
-        <string>SMA</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox_3">
-       <property name="text">
-        <string>EMA</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox_4">
-       <property name="text">
-        <string>RSI</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox_5">
-       <property name="text">
-        <string>BB</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="text">
-        <string>maxDrawDown</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>280</y>
-     <width>251</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ЗАПУСК</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>430</y>
-     <width>369</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>Обновить данные</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Использовать имеющиеся</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QProgressBar" name="progressBar">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>480</y>
-     <width>761</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="value">
-    <number>1</number>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>20</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Технический анализ</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>100</y>
-     <width>321</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ff00ff;&quot;&gt;Введите тикет акции&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>610</x>
-     <y>170</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Период</string>
-   </property>
-  </widget>
- </widget>
- <resources/>
- <connections/>
+    <class>Dialog</class>
+    <widget class="QDialog" name="Dialog">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>819</width>
+                <height>533</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Dialog</string>
+        </property>
+        <widget class="QDateEdit" name="dateEdit">
+            <property name="geometry">
+                <rect>
+                    <x>470</x>
+                    <y>200</y>
+                    <width>141</width>
+                    <height>41</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="QDateEdit" name="dateEdit_2">
+            <property name="geometry">
+                <rect>
+                    <x>650</x>
+                    <y>200</y>
+                    <width>131</width>
+                    <height>41</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="QGroupBox" name="groupBox">
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>80</y>
+                    <width>371</width>
+                    <height>331</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Индикаторы</string>
+            </property>
+            <widget class="QWidget" name="verticalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>30</y>
+                        <width>371</width>
+                        <height>311</height>
+                    </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout">
+                    <item>
+                        <widget class="QCheckBox" name="checkBox_SMA">
+                            <property name="text">
+                                <string>SMA</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QCheckBox" name="checkBox_EMA">
+                            <property name="text">
+                                <string>EMA</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QCheckBox" name="checkBox_RSI">
+                            <property name="text">
+                                <string>RSI</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QCheckBox" name="checkBox_BB">
+                            <property name="text">
+                                <string>BB</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QCheckBox" name="checkBox">
+                            <property name="text">
+                                <string>maxDrawDown</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+        </widget>
+        <widget class="QPushButton" name="pushButton">
+            <property name="geometry">
+                <rect>
+                    <x>510</x>
+                    <y>280</y>
+                    <width>251</width>
+                    <height>81</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>ЗАПУСК</string>
+            </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox">
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>430</y>
+                    <width>369</width>
+                    <height>22</height>
+                </rect>
+            </property>
+            <item>
+                <property name="text">
+                    <string>Обновить данные</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Использовать имеющиеся</string>
+                </property>
+            </item>
+        </widget>
+        <widget class="QProgressBar" name="progressBar">
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>480</y>
+                    <width>761</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="value">
+                <number>1</number>
+            </property>
+        </widget>
+        <widget class="QLabel" name="label">
+            <property name="geometry">
+                <rect>
+                    <x>370</x>
+                    <y>20</y>
+                    <width>131</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Технический анализ</string>
+            </property>
+        </widget>
+        <widget class="QTextEdit" name="textEdit_2">
+            <property name="geometry">
+                <rect>
+                    <x>480</x>
+                    <y>100</y>
+                    <width>321</width>
+                    <height>51</height>
+                </rect>
+            </property>
+            <property name="html">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                    &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style
+                    type=&quot;text/css&quot;&gt;
+                    p, li { white-space: pre-wrap; }
+                    &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt;
+                    font-weight:400; font-style:normal;&quot;&gt;
+                    &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px;
+                    margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot;
+                    font-size:16pt; color:#ff00ff;&quot;&gt;Введите тикет акции&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                </string>
+            </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+            <property name="geometry">
+                <rect>
+                    <x>610</x>
+                    <y>170</y>
+                    <width>81</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Период</string>
+            </property>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
 </ui>
